@@ -4,7 +4,22 @@ import {Link} from 'react-router-dom';
 import { useState } from 'react';
 
 
-function Creative() {
+const Creative = () => {
+   const [data, setData] = React.useState();
+
+  const handleSave = (event) =>{
+     console.log(data);
+     event.preventDefault();
+  }
+  
+  const handleChange = (event) =>{
+     //console.log(event.target.name, event.target.value);
+     setData({
+        ...data,
+        [event.target.name]: event.target.value
+     })
+  }
+
    const[creativeType, setCreativeType] = useState("")
    const creativeTypeHandle=(e)=>{
       setCreativeType(e.target.value)     
@@ -15,23 +30,41 @@ function Creative() {
       <h4>Ad preferences</h4>
       <div class="wrapper">
        
-         <form>
+         <form onSubmit={handleSave}>
             <div class="form-outline mb-4">
                <label class="form-label" for="form6Example3">Heading</label>
-               <input type="text" id="form6Example3" class="form-control" />
+               <input 
+               type="text" 
+               id="form6Example3" 
+               class="form-control" 
+               name="heading"
+               onChange={handleChange}
+               />
             </div>
  
             <div class="row mb-4">
                <div class="col">
                   <div class="form-outline">
                   <label class="form-label" for="form6Example1">Cost Per Sale</label>
-                  <input type="text" id="form6Example1" class="form-control" />
+                  <input 
+                  type="text" 
+                  id="form6Example1" 
+                  class="form-control" 
+                  name="costpersale"
+                  onChange={handleChange}
+                  />
                   </div>
                </div>
                <div class="col">
                   <div class="form-outline">
                   <label class="form-label" for="form6Example2">Destination URL</label>
-                  <input type="text" id="form6Example2" class="form-control" />
+                  <input 
+                  type="text" 
+                  id="form6Example2" 
+                  class="form-control"
+                  name="destinationurl" 
+                  onChange={handleChange}
+                  />
                   </div>
                </div>
             </div>
